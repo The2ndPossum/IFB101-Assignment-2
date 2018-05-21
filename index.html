@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>
+			IFB101
+		</title>
+	</head>
+	<body>
+		<h1>IFB101</h1>
+		Search by keyword: <input type="text" id="wordInput">
+		<button id="searchButton">Submit</button>
+		<div id="status"></div>
+		<script>
+			var postList = null;
+			function statusChangeCallback(response) {
+			    console.log(response);
+			    if (response.status === 'connected') {
+			      getPosts(response);
+			    } else {
+			      document.getElementById('status').innerHTML = 'Please log ' +
+			        'into this app.';
+			    }
+			}
+
+			function checkLogin() {
+				FB.getLoginStatus(function(response) {
+    				statusChangeCallback(response);
+				});
+			}
+
+			function getPosts(response) {
+				FB.api(
+						'/me',
+						{"fields":"posts{privacy,picture,created_time,message}"},
+						function (response) {
+							if (response && !response.error) {
+								console.log(response);
+								postList = response;
+							} else {
+								console.log(response);
+							}
+						}
+					);
+			}
+
+			function fbAsyncInit(user_token) {
+			    FB.init({
+			      appId            : '863421973860747',
+			      cookie           : true,
+			      autoLogAppEvents : true,
+			      xfbml            : true,
+			      version          : 'v3.0'
+			    });
+			    checkLogin();
+			};
+
+			(function(d, s, id){
+			    var js, fjs = d.getElementsByTagName(s)[0];
+			    if (d.getElementById(id)) {return;}
+			    js = d.createElement(s); js.id = id;
+			    js.src = "https://connect.facebook.net/en_US/sdk.js";
+			    fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));
+
+			document.getElementById("searchButton").onclick = function() {
+				var word = document.getElementById("wordInput").value;
+				console.log(word);
+				var positiveList = [];
+				if (postList !== null) {
+					for (var i in postList.length - 1) {
+						if (typeof postList.posts.data[i].message !== 'undefined') {
+								if (postList.posts.data[i].message.search(word) !== -1) {
+									positiveList.push(postList.posts.data[i]);
+								}
+						}
+					}
+					console.log(positiveList);
+				} else {
+					console.log("Please wait for the page to load");
+				}
+			}
+		</script>
+	</body>
+</html>
