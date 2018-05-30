@@ -72,6 +72,7 @@
 						if (typeof postList.posts.data[i].message !== 'undefined') {
 							console.log(postList.posts.data[i].message);
 								if (postList.posts.data[i].message.search(word) !== -1) {
+									echo(postList.posts.data[i].message);
 									positiveList.push(postList.posts.data[i]);
 								}
 						}
