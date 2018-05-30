@@ -66,7 +66,7 @@
 			document.getElementById("searchButton").onclick = function() {
 				var word = document.getElementById("wordInput").value;
 				console.log(word);
-				console.log(postList);
+				console.log(postList.posts.data);
 				var positiveList = [];
 				if (postList !== null) {
 					for (var i in postList.posts.data.length - 1) {
