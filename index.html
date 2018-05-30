@@ -9,8 +9,11 @@
 	<body>
 		<h1>IFB101</h1>
 		Search by keyword: <input type="text" id="wordInput">
-		<input type="checkbox" id="excludePrivate" value="exclude"> Exclude posts which are set to private<br>
-		<button id="searchButton">Submit</button>
+		Search by date between <input type="date" id="firstDate"> and <input type="date" id="lastDate">
+		<input type="checkbox" id="excludePrivate"> Exclude posts which are set to private<br>
+		<input type="checkbox" id="dateCheck"> Search by date<br>
+		<button id="searchButton">Submit</button><br>
+		If you don't want to search by word, leave a box empty<br>
 		<div id="status"></div>
 		<script>
 			var postList = null;
@@ -66,19 +69,30 @@
 
 			document.getElementById("searchButton").onclick = function() {
 				var word = document.getElementById("wordInput").value;
-				var excludePrivate = document.getElementById("excludePrivate").value;
+				var excludePrivate = document.getElementById("excludePrivate").checked;
+				var firstDate = document.getElementById("firstDate").value;
+				var lastDate = document.getElementById("lastDate").value;
+				var dateChecked = document.getElementById("dateChecked").checked;
 				console.log(excludePrivate);
+				console.log(firstDate);
+				console.log(lastDate);
+				console.log(dateChecked);
 				var postData = postList.posts.data;
 				var positiveList = [];
+				var wordList = [];
+				var dateList = [];
 				if (postList !== null) {
-					for (var i = 0; i < postData.length; i++) {
-						if (typeof postList.posts.data[i].message !== 'undefined') {
-								if (postList.posts.data[i].message.search(word) !== -1) {
-									positiveList.push(postList.posts.data[i]);
-								}
+					if (word !== "") {
+						for (var i = 0; i < postData.length; i++) {
+							if (typeof postList.posts.data[i].message !== 'undefined') {
+									if (postList.posts.data[i].message.search(word) !== -1) {
+										wordList.push(postList.posts.data[i]);
+									}
+							}
 						}
+						console.log(wordList);
 					}
-					console.log(positiveList);
+					if 
 				} else {
 					console.log("Please wait for the page to load");
 				}
