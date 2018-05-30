@@ -90,7 +90,7 @@
 					}
 					if (dateChecked == true) {
 						for (var i = 0; i < postData.length; i++) {
-							if ((postData[i].created_time < firstDate && postData[i].created_time > lastDate)  || (postData[i].created_time > firstDate &&	postData[i].created_time < lastDate)) {
+							if ((postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate)) {
 								dateList.push(postData[i]);
 							}	
 						}
