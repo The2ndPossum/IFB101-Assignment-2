@@ -105,11 +105,11 @@
 						console.log("worked");
 						var privateList = []
 						for (var i = 0; i < postData.length; i++) {
-							console.log(postData[i].privacy.value);
 							if (postData[i].privacy.value == "SELF") {
 								privateList.push(postData[i]);
 							}
 						}
+						console.log(privateList.length);
 						for (var i = 0; i < positiveList.length; i++) {
 							if (positiveList[i] in privateList) {
 								positiveList[i].pop;
