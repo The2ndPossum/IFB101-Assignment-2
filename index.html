@@ -10,7 +10,6 @@
 		<h1>IFB101</h1>
 		Search by keyword: <input type="text" id="wordInput"><br>
 		Search by date between <input type="date" id="firstDate"> and <input type="date" id="lastDate"><br>
-		<input type="checkbox" id="excludePrivate"> Exclude posts which are set to private<br>
 		<input type="checkbox" id="dateChecked"> Search by date<br>
 		<button id="searchButton">Submit</button><br>
 		If you don't want to search by words, leave the search box empty<br>
@@ -69,7 +68,6 @@
 
 			document.getElementById("searchButton").onclick = function() {
 				var word = document.getElementById("wordInput").value;
-				var excludePrivate = document.getElementById("excludePrivate").checked;
 				var firstDate = document.getElementById("firstDate").value;
 				var lastDate = document.getElementById("lastDate").value;
 				var dateChecked = document.getElementById("dateChecked").checked;
@@ -84,35 +82,18 @@
 								}
 							}
 						}
-						console.log(wordList);
 					} else if (dateChecked == true && word == "") {
 						for (var i = 0; i < postData.length; i++) {
 							if ((postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate)) {
 								positiveList.push(postData[i]);
 							}	
 						}
-						console.log(dateList);
 					} else if (dateChecked == true && word !== "") {
 						for (var i = 0; i < postData.length; i++) {
 							if (typeof postList.posts.data[i].message !== 'undefined') {
 								if ((postList.posts.data[i].message.search(word) !== -1) && (postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate)) {
 									positiveList.push(postList.posts.data[i]);
 								}
-							}
-						}
-					}
-					if (excludePrivate == true) {
-						console.log("worked");
-						var privateList = []
-						for (var i = 0; i < postData.length; i++) {
-							if (postData[i].privacy.value == "SELF") {
-								privateList.push(postData[i]);
-							}
-						}
-						console.log(privateList.length);
-						for (var i = 0; i < positiveList.length; i++) {
-							if (positiveList[i] in privateList) {
-								positiveList[i].pop();
 							}
 						}
 					}
