@@ -13,7 +13,7 @@
 		<input type="checkbox" id="excludePrivate"> Exclude posts which are set to private<br>
 		<input type="checkbox" id="dateChecked"> Search by date<br>
 		<button id="searchButton">Submit</button><br>
-		If you don't want to search by word, leave the search box empty<br>
+		If you don't want to search by words, leave the search box empty<br>
 		<div id="status"></div>
 		<script>
 			var postList = null;
@@ -75,27 +75,46 @@
 				var dateChecked = document.getElementById("dateChecked").checked;
 				var postData = postList.posts.data;
 				var positiveList = [];
-				var wordList = [];
-				var dateList = [];
 				if (postList !== null) {
-					if (word !== "") {
+					if (word !== "" && dateChecked == false) {
 						for (var i = 0; i < postData.length; i++) {
 							if (typeof postList.posts.data[i].message !== 'undefined') {
-									if (postList.posts.data[i].message.search(word) !== -1) {
-										wordList.push(postList.posts.data[i]);
-									}
+								if (postList.posts.data[i].message.search(word) !== -1) {
+									positiveList.push(postList.posts.data[i]);
+								}
 							}
 						}
 						console.log(wordList);
-					}
-					if (dateChecked == true) {
+					} else if (dateChecked == true && word == "") {
 						for (var i = 0; i < postData.length; i++) {
 							if ((postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate)) {
-								dateList.push(postData[i]);
+								positiveList.push(postData[i]);
 							}	
 						}
 						console.log(dateList);
+					} else if (dateChecked == true && word !== "") {
+						for (var i = 0; i < postData.length; i++) {
+							if (typeof postList.posts.data[i].message !== 'undefined') {
+								if ((postList.posts.data[i].message.search(word) !== -1) && (postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate)) {
+									positiveList.push(postList.posts.data[i]);
+								}
+							}
+						}
 					}
+					if (excludePrivate == true) {
+						var privateList = []
+						for (var i = 0; i < postData.length; i++) {
+							if (postData[i].privacy.value == "SELF") {
+								privateList.push(postData[i]);
+							}
+						}
+						for (var i = 0; i < positiveList.length; i++) {
+							if (positiveList[i] in privateList) {
+								positiveList[i].pop;
+							}
+						}
+					}
+					console.log(positiveList);
 				} else {
 					console.log("Please wait for the page to load");
 				}
