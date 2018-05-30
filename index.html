@@ -70,6 +70,7 @@
 				if (postList !== null) {
 					for (var i in postList.length - 1) {
 						if (typeof postList.posts.data[i].message !== 'undefined') {
+							console.log(postList.posts.data[i].message);
 								if (postList.posts.data[i].message.search(word) !== -1) {
 									positiveList.push(postList.posts.data[i]);
 								}
