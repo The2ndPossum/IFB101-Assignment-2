@@ -73,10 +73,6 @@
 				var firstDate = document.getElementById("firstDate").value;
 				var lastDate = document.getElementById("lastDate").value;
 				var dateChecked = document.getElementById("dateChecked").checked;
-				console.log(excludePrivate);
-				console.log(firstDate);
-				console.log(lastDate);
-				console.log(dateChecked);
 				var postData = postList.posts.data;
 				var positiveList = [];
 				var wordList = [];
@@ -93,7 +89,12 @@
 						console.log(wordList);
 					}
 					if (dateChecked == true) {
-						console.log("worked");
+						for (var i = 0; i < postData.length; i++) {
+							if ((postData[i].created_time < firstDate && postData[i].created_time > lastDate)  || (postData[i].created_time > firstDate &&	postData[i].created_time < lastDate)) {
+								dateList.push(postData[i]);
+							}	
+						}
+						console.log(dateList);
 					}
 				} else {
 					console.log("Please wait for the page to load");
