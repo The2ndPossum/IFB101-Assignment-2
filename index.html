@@ -9,6 +9,7 @@
 	<body>
 		<h1>IFB101</h1>
 		Search by keyword: <input type="text" id="wordInput">
+		<input type="checkbox" id="excludePrivate" value="exclude"> Exclude posts which are set to private<br>
 		<button id="searchButton">Submit</button>
 		<div id="status"></div>
 		<script>
@@ -65,10 +66,9 @@
 
 			document.getElementById("searchButton").onclick = function() {
 				var word = document.getElementById("wordInput").value;
-				console.log(word);
-				console.log(postList.posts.data);
+				var excludePrivate = document.getElementById("excludePrivate").value;
+				console.log(excludePrivate);
 				var postData = postList.posts.data;
-				console.log(postData.length);
 				var positiveList = [];
 				if (postList !== null) {
 					for (var i = 0; i < postData.length; i++) {
