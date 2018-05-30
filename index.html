@@ -71,8 +71,7 @@
 				console.log(postData.length);
 				var positiveList = [];
 				if (postList !== null) {
-					for (var i in postList.posts.data.length - 1) {
-						console.log("test");
+					for (var i = 0; i < postData.length; i++) {
 						if (typeof postList.posts.data[i].message !== 'undefined') {
 								if (postList.posts.data[i].message.search(word) !== -1) {
 									positiveList.push(postList.posts.data[i]);
