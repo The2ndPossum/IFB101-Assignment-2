@@ -97,7 +97,12 @@
 							}
 						}
 					}
-					console.log(positiveList);
+					if (positiveList.length > 0) {
+						document.getElementByID("status").innerHTML = "<tr><th>Post ID<th><th>Message</th><th>Date Created</th><th>Privacy</th></tr>"
+					}
+						for (var i = 0; i < positiveList.length; i++) {
+							document.getElementByID("status").innerHTML += "
+						}
 				} else {
 					console.log("Please wait for the page to load");
 				}
