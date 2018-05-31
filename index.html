@@ -18,7 +18,8 @@
 		<input type="checkbox" id="dateChecked"> Search by date<br>
 		<button id="searchButton">Submit</button><br>
 		If you don't want to search by words, leave the search box empty<br>
-		<table id="resultTable"></table>
+		<table id="resultTable"></table><br>
+		<div id="status"></div>
 		<br><br>
 		<a href="https://the2ndpossum.github.io/IFB101-Assignment-2/privacypolicy.htm">Privacy Policy</a>
 		<script>
@@ -79,9 +80,9 @@
 				var firstDate = document.getElementById("firstDate").value;
 				var lastDate = document.getElementById("lastDate").value;
 				var dateChecked = document.getElementById("dateChecked").checked;
-				var postData = postList.posts.data;
 				var positiveList = [];
 				if (postList !== null) {
+					var postData = postList.posts.data;
 					if (word !== "" && dateChecked == false) {
 						for (var i = 0; i < postData.length; i++) {
 							if (typeof postList.posts.data[i].message !== 'undefined') {
@@ -129,6 +130,8 @@
 							posPrivacy.innerHTML = positiveList[i].privacy.description;
 						}
 					}
+				} else {
+					document.getElementById("status").innerHTML = "Please wait for the page to load";
 				}
 			}
 		</script>
