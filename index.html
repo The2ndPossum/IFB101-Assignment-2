@@ -98,11 +98,11 @@
 						}
 					}
 					if (positiveList.length > 0) {
-						document.getElementByID("status").innerHTML = "<table><tr><th>Post ID<th><th>Message</th><th>Date Created</th><th>Privacy</th></tr>";
+						document.getElementById("status").innerHTML = "<table><tr><th>Post ID<th><th>Message</th><th>Date Created</th><th>Privacy</th></tr>";
 						for (var i = 0; i < positiveList.length; i++) {
-							document.getElementByID("status").innerHTML += "<tr><th>" + positiveList[i].id + "</th><th>" + positiveList[i].message + "</th><th>" + positiveList[i].created_time + "</th><th>" + positiveList[i].privacy.description + "</th></tr>";
+							document.getElementById("status").innerHTML += "<tr><th>" + positiveList[i].id + "</th><th>" + positiveList[i].message + "</th><th>" + positiveList[i].created_time + "</th><th>" + positiveList[i].privacy.description + "</th></tr>";
 						}
-						document.getElementByID("status").innerHTML += "</table>";
+						document.getElementById("status").innerHTML += "</table>";
 					}
 				} else {
 					console.log("Please wait for the page to load");
