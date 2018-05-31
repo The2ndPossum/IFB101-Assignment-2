@@ -120,7 +120,7 @@
 							var posMessage = tableList[i].insertCell(1);
 							var posCreated_time = tableList[i].insertCell(2);
 							var posPrivacy = tableList[i].insertCell(3);
-							posId.innerHTML = positiveList[i].id;
+							posId.innerHTML = '<a href="https://www.facebook.com/' + positiveList[i].id + '">' + positiveList[i].id + '</a>';
 							posMessage.innerHTML = positiveList[i].message;
 							posCreated_time.innerHTML = positiveList[i].created_time;
 							posPrivacy.innerHTML = positiveList[i].privacy.description;
