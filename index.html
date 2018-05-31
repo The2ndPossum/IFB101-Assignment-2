@@ -113,7 +113,7 @@
 						tableMessage.innerHTML = "Message";
 						tableCreated_time.innerHTML = "Created Time";
 						tablePrivacy.innerHTML = "Privacy";
-						tableRows = [];
+						var tableList = [];
 						for (var i = 0; i < positiveList.length; i++) {
 							tableList.push(table.insertRow(i + 1));
 							var posId = tableList[i].insertCell(0);
