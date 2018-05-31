@@ -51,6 +51,7 @@
 						{"fields":"posts{privacy,picture,created_time,message}"},
 						function (response) {
 							if (response && !response.error) {
+								console.log("Got Posts");
 								postList = response;
 							}
 						}
@@ -101,7 +102,7 @@
 					} else if (dateChecked == true && word !== "") {
 						for (var i = 0; i < postData.length; i++) {
 							if (typeof postList.posts.data[i].message !== 'undefined') {
-								if ((postList.posts.data[i].message.search(word) !== -1) && (postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate)) {
+								if ((postList.posts.data[i].message.search(word) !== -1) && ((postData[i].created_time <= firstDate && postData[i].created_time >= lastDate)  || (postData[i].created_time >= firstDate && postData[i].created_time <= lastDate))) {
 									positiveList.push(postList.posts.data[i]);
 								}
 							}
