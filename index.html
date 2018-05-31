@@ -113,10 +113,19 @@
 						tableMessage.innerHTML = "Message";
 						tableCreated_time.innerHTML = "Created Time";
 						tablePrivacy.innerHTML = "Privacy";
-						//for (var i = 0; i < positiveList.length; i++) {
-						//	document.getElementById("status").innerHTML += "<tr><td>" + positiveList[i].id + "</td><td>" + positiveList[i].message + "</td><td>" + positiveList[i].created_time + "</td><td>" + positiveList[i].privacy.description + "</td></tr>";
-						//}
-						//document.getElementById("status").innerHTML += "</table>";
+						tableRows = [];
+						for (var i = 0; i < positiveList.length; i++) {
+							tableList.push(table.insertRow(i + 1));
+							var posId = tableList[i].insertCell(0);
+							var posMessage = tableList[i].insertCell(1);
+							var posCreated_time = tableList[i].insertCell(2);
+							var posPrivacy = tableList[i].insertCell(3);
+							posId.innerHTML = positiveList[i].id;
+							posMessage.innerHTML = positiveList[i].message;
+							posCreated_time.innerHTML = positiveList[i].created_time;
+							posPrivacy.innerHTML = positiveList[i].privacy.description;
+							//document.getElementById("status").innerHTML += "<tr><td>" + positiveList[i].id + "</td><td>" + positiveList[i].message + "</td><td>" + positiveList[i].created_time + "</td><td>" + positiveList[i].privacy.description + "</td></tr>";
+						}
 					}
 				} else {
 					console.log("Please wait for the page to load");
