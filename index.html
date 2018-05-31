@@ -103,7 +103,7 @@
 						}
 					}
 					if (positiveList.length > 0) {
-						document.getElementById("status").innerHTML = "<tr><th>Post ID<th><th>Message</th><th>Date Created</th><th>Privacy</th></tr>";
+						document.getElementById("status").innerHTML = "<tr><td>Post ID<th><th>Message</td><td>Date Created</td><td>Privacy</td></tr>";
 						for (var i = 0; i < positiveList.length; i++) {
 							document.getElementById("status").innerHTML += "<tr><td>" + positiveList[i].id + "</td><td>" + positiveList[i].message + "</td><td>" + positiveList[i].created_time + "</td><td>" + positiveList[i].privacy.description + "</td></tr>";
 						}
