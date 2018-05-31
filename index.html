@@ -28,13 +28,12 @@
 			
 			
 			function statusChangeCallback(response) {
-			    console.log(response);
 			    if (response.status === 'connected') {
 			      getPosts(response);
 			    } else {
 			     	FB.login(function(response) {
 					checkLogin();
-				}, {scope: 'public_profile,user_posts,user_photos'});
+				}, {scope: 'public_profile,user_posts,user_photos,user_status,user_friends'});
 			    }
 			}
 
@@ -45,16 +44,12 @@
 			}
 
 			function getPosts(response) {
-				console.log("test");
 				FB.api(
 						'/me',
 						{"fields":"posts{privacy,picture,created_time,message}"},
 						function (response) {
 							if (response && !response.error) {
-								console.log(response);
 								postList = response;
-							} else {
-								console.log(response);
 							}
 						}
 					);
@@ -84,7 +79,6 @@
 				var firstDate = document.getElementById("firstDate").value;
 				var lastDate = document.getElementById("lastDate").value;
 				var dateChecked = document.getElementById("dateChecked").checked;
-				console.log(postData);
 				var postData = postList.posts.data;
 				var positiveList = [];
 				if (postList !== null) {
@@ -133,11 +127,8 @@
 							posMessage.innerHTML = positiveList[i].message;
 							posCreated_time.innerHTML = positiveList[i].created_time;
 							posPrivacy.innerHTML = positiveList[i].privacy.description;
-							//document.getElementById("status").innerHTML += "<tr><td>" + positiveList[i].id + "</td><td>" + positiveList[i].message + "</td><td>" + positiveList[i].created_time + "</td><td>" + positiveList[i].privacy.description + "</td></tr>";
 						}
 					}
-				} else {
-					console.log("Please wait for the page to load");
 				}
 			}
 		</script>
