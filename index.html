@@ -45,6 +45,7 @@
 			}
 
 			function getPosts(response) {
+				console.log("test");
 				FB.api(
 						'/me',
 						{"fields":"posts{privacy,picture,created_time,message}"},
