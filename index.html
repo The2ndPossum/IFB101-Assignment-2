@@ -103,9 +103,9 @@
 						}
 					}
 					if (positiveList.length > 0) {
-						document.getElementById("status").innerHTML = "<table><tr><th>Post ID<th><th>Message</th><th>Date Created</th><th>Privacy</th></tr>";
+						document.getElementById("status").innerHTML = "<tr><th>Post ID<th><th>Message</th><th>Date Created</th><th>Privacy</th></tr>";
 						for (var i = 0; i < positiveList.length; i++) {
-							document.getElementById("status").innerHTML += "<tr><th>" + positiveList[i].id + "</th><th>" + positiveList[i].message + "</th><th>" + positiveList[i].created_time + "</th><th>" + positiveList[i].privacy.description + "</th></tr>";
+							document.getElementById("status").innerHTML += "<tr><td>" + positiveList[i].id + "</td><td>" + positiveList[i].message + "</td><td>" + positiveList[i].created_time + "</td><td>" + positiveList[i].privacy.description + "</td></tr>";
 						}
 						document.getElementById("status").innerHTML += "</table>";
 					}
