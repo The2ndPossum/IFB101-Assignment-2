@@ -30,7 +30,8 @@
 			
 			function statusChangeCallback(response) {
 			    if (response.status === 'connected') {
-			      getPosts(response);
+				    console.log("Connected Successfully");
+				    getPosts(response);
 			    } else {
 			     	FB.login(function(response) {
 					checkLogin();
@@ -131,7 +132,7 @@
 						}
 					}
 				} else {
-					document.getElementById("status").innerHTML = "Please wait for the page to load";
+					document.getElementById("status").innerHTML = "Please wait for the page to load and make sure you are logged in";
 				}
 			}
 		</script>
